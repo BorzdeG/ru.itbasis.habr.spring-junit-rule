@@ -1,6 +1,8 @@
 package demo.controller;
 
 import demo.service.CustomService;
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.rules.SpringClassRule;
+import org.springframework.test.context.junit4.rules.SpringMethodRule;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -22,6 +26,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IndexControllerTest {
 	private final String value;
 	private final String expected;
+
+	@ClassRule public static final SpringClassRule  SPRING_CLASS_RULE = new SpringClassRule();
+	@Rule public final             SpringMethodRule springMethodRule  = new SpringMethodRule();
 
 	@Autowired
 	private MockMvc mockMvc;
